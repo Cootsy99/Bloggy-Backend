@@ -47,5 +47,11 @@ router.get(`/api/articles`, (req, res) => {
  * Description:     Create a single article
  */
 
+router.post("/api/articles", (req, res) => {
+  Article.create(req.body.article)
+    .then((newArticle) => res.status(201).json({ article: newArticle }))
+    .catch((error) => res.status(500).json({ error: error }));
+});
+
 //Export the Router so we can use it in the 'server.s' file
 module.exports = router;
